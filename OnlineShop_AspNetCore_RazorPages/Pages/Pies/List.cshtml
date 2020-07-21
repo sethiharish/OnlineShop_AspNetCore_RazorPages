@@ -1,0 +1,34 @@
+﻿@page
+@model ListModel
+@{
+    ViewData["Title"] = "Pies";
+}
+
+<div class="container">
+    <div class="row">
+        @if (!string.IsNullOrEmpty(@Model.SelectedCategoryName))
+        {
+            <h3 class="text-center">@Model.SelectedCategoryName</h3>
+        }
+        <div class="row border">
+            @foreach (var pie in Model.Pies)
+            {
+                <div class="col-sm-4">
+                    <div class="px-4 my-2">
+                        <img class="img-fluid"
+                             src="@pie.ThumbnailImageUrl"
+                             title="@pie.Name"
+                             alt="@pie.Name" />
+                        <a asp-page="./Detail" asp-route-id="@pie.Id">@pie.Name</a>
+                        <span class="float-right">@pie.Price</span>
+                        <p>@pie.ShortDescription</p>
+                        <button class="btn btn-danger">
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

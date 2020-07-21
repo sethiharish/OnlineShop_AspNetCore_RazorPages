@@ -24,6 +24,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Pies
+                            </a>
+                            <div class="dropdown-menu">
+                                @await Component.InvokeAsync("CategoryList")
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,7 +45,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - OnlineShop_AspNetCore_RazorPages - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2020 - Online Shop - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
