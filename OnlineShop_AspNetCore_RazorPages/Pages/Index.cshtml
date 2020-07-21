@@ -34,7 +34,7 @@
                              src="@pie.ThumbnailImageUrl"
                              title="@pie.Name"
                              alt="@pie.Name" />
-                        <a href="#">@pie.Name</a>
+                        <a asp-page="Pies/Detail" asp-route-id="@pie.Id">@pie.Name</a>
                         <span class="float-right">@pie.Price</span>
                         <p>@pie.ShortDescription</p>
                         <button class="btn btn-danger">

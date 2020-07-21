@@ -1,0 +1,30 @@
+﻿@page "{id:int}"
+@model DetailModel
+@{
+    ViewData["Title"] = Model.Pie.Name + " Details";
+}
+
+<div class="container">
+    <div class="row mb-2">
+        <div class="row border pb-2">
+            <div class="col-sm-9">
+                <h5>
+                    @Model.Pie.Name - <small>@Model.Pie.ShortDescription</small>
+                </h5>
+                <img class="img-fluid"
+                     src="@Model.Pie.ImageUrl"
+                     title="@Model.Pie.Name"
+                     alt="@Model.Pie.Name" />
+            </div>
+            <div class="col-sm-3 mt-5">
+                <button class="btn btn-danger">
+                    Add to cart
+                </button>
+                <p>
+                    <small>@Model.Pie.LongDescription</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
