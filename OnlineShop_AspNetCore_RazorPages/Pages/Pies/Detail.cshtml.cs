@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using OnlineShop.Data.Services;
 using OnlineShop.Entities;
 using System.Threading.Tasks;
@@ -16,9 +17,16 @@ namespace OnlineShop_AspNetCore_RazorPages.Pages.Pies
 
         public Pie Pie { get; set; }
 
-        public async Task OnGet(int id)
+        public async Task<IActionResult> OnGet(int id)
         {
             Pie = await pieService.GetPieAsync(id);
+            
+            if(Pie == null)
+            {
+                return RedirectToPage("../NotFound");
+            }
+            
+            return Page();
         }
     }
 }
