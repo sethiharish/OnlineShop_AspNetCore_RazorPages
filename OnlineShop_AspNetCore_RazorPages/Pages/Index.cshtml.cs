@@ -5,21 +5,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using OnlineShop.Data.Services;
+using OnlineShop.Entities;
 
 namespace OnlineShop_AspNetCore_RazorPages.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly IBannerService bannerService;
+        private readonly IPieService pieService;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(IBannerService bannerService, IPieService pieService)
         {
-            _logger = logger;
+            this.bannerService = bannerService;
+            this.pieService = pieService;
         }
 
-        public void OnGet()
-        {
+        public List<Banner> Banners { get; set; }
+        public Banner ActiveBanner { get { return Banners.FirstOrDefault(); } }
 
+        public IEnumerable<Pie> PiesOfTheWeek { get; set; }
+
+        public async Task OnGet()
+        {
+            PiesOfTheWeek = await pieService.GetPiesOfTheWeekAsync();
+            Banners = (await bannerService.GetBannersAsync()).ToList();
         }
     }
 }

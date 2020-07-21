@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnlineShop.Data.Services;
+using OnlineShop.Data.Sql;
+using OnlineShop.Data.Sql.Services;
 
 namespace OnlineShop_AspNetCore_RazorPages
 {
@@ -23,6 +27,13 @@ namespace OnlineShop_AspNetCore_RazorPages
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IPieService, PieService>();
+
+            services.AddDbContext<OnlineShopContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddRazorPages();
         }
 

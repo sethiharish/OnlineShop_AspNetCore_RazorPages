@@ -1,10 +1,48 @@
 ﻿@page
+
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        <div class="row border mb-2 py-2">
+            <div class="col-sm-12">
+                <img class="img-fluid"
+                     src="@Model.ActiveBanner.ImageUrl"
+                     alt="@Model.ActiveBanner.Name"
+                     title="@Model.ActiveBanner.Description" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="row pl-4">
+            <h5>Our pies of the week, specially picked for you!</h5>
+        </div>
+
+        <div class="row border mb-3">
+            @foreach (var pie in Model.PiesOfTheWeek)
+            {
+                <div class="col-sm-4">
+                    <div class="px-4 my-2">
+                        <img class="img-fluid"
+                             src="@pie.ThumbnailImageUrl"
+                             title="@pie.Name"
+                             alt="@pie.Name" />
+                        <a href="#">@pie.Name</a>
+                        <span class="float-right">@pie.Price</span>
+                        <p>@pie.ShortDescription</p>
+                        <button class="btn btn-danger">
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
